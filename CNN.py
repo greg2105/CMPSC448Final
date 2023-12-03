@@ -13,22 +13,21 @@ model = tf.keras.Sequential([
     tf.keras.layers.MaxPooling2D((2, 2)),
     tf.keras.layers.Conv2D(64, (3, 3), activation='relu'),
     tf.keras.layers.MaxPooling2D((2, 2)),
-    tf.keras.layers.Conv2D(128, (3, 3), activation='relu'),  # Adding another convolutional layer
+    tf.keras.layers.Conv2D(128, (3, 3), activation='relu'),
     tf.keras.layers.MaxPooling2D((2, 2)),
     tf.keras.layers.Flatten(),
-    tf.keras.layers.Dense(256, activation='relu'),  # Increase the number of units
-    tf.keras.layers.Dropout(0.5),  # Adding dropout
+    tf.keras.layers.Dense(256, activation='relu'),
+    tf.keras.layers.Dropout(0.5),
     tf.keras.layers.Dense(256, activation='relu', kernel_regularizer=tf.keras.regularizers.l2(0.01))
-,  # Adding another dense layer
-    tf.keras.layers.Dropout(0.3),  # Adding dropout
+, 
+    tf.keras.layers.Dropout(0.3),
     tf.keras.layers.Dense(10, activation='softmax')
 ])
 
-model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),  # Adjust the learning rate
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 
-# Add data augmentation
 datagen = tf.keras.preprocessing.image.ImageDataGenerator(
     rotation_range=20,
     width_shift_range=0.2,
